@@ -1,0 +1,97 @@
+body{
+  background-image: url('./assets/fond.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(5px);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header */
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgb(255, 255, 255);
+  backdrop-filter: blur(5px);
+  width: 100vw;
+  height: 15vh;
+  top: 0;
+  left: 0;
+}
+.nav-links{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin-right: 5vw;
+}
+.nav-item{
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.titre{
+  font-size: 3em;
+  color: rgb(5, 0, 0);
+  text-align: center;
+  margin-top: 2vh;
+}
+.text-presentation{
+  font-size: 2em;
+  margin-top: 3vh;
+  margin-left: 3vw;
+}
+/* Reservation */
+.search-form{
+  background-color: rgba(255, 255, 255, 0.678);
+  backdrop-filter: blur(5px);
+  width: 50%;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-form h2{
+  color: white;
+  text-align: center;
+}
+.search-form label{
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+}
+.search-form form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-form input[type="text"], .search-form input[type="date"], .search-form textarea{
+  width: 100%;
+  border: none;
+  height: 5vh;
+  padding: 5px 0px;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  margin-bottom: 18px;
+}
+.search-form input[type="submit"]{
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.search-form input[type="number"]{
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  
+}
