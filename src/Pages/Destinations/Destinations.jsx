@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next";
 const Destinations = ()=>{
     const {t,i18n} = useTranslation()
     const act = t('actualLanguage')
-    return <div id="destinations">
+    return <div id="destinations" className="destinations">
         <h3 className="text-center mt-5">Destinations</h3>
-        <div className="destinations container-fluid w-100 h-100 p-5 rounded-lg d-flex flex-wrap justify-content-around"  style={{marginTop: "0px"}}>
+        <div className="container-fluid w-100 h-100 p-5 rounded-lg d-flex flex-wrap justify-content-around"  style={{marginTop: "0px"}}>
             {
                 data.map((lieu,index)=>{
                     const desc = lieu.description.find(d=>d.translate === act)

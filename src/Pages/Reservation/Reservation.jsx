@@ -44,7 +44,7 @@ const Reservation = () => {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container-fluid py-5 reservation">
       <div className="card shadow-lg p-4 rounded">
         <h3 className="text-center mb-4 text-primary">{t('incitation')}</h3>
         <p className="text-center mb-4">{t('incitation_text')}</p>

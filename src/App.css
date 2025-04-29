@@ -100,6 +100,7 @@
 .hero{
   margin-top: 18vh;
   width: 100vw;
+  background-color: rgba(255, 251, 0, 0.699);
 }
 .land_desc{
   background-image: url('../public/images/andasibe.jpg');
@@ -130,7 +131,7 @@
 /* Description */
 .description{
   padding: 2em;
-  background-color: rgba(238, 159, 14, 0.699);
+  background-color: rgba(255, 251, 0, 0.699);
 }
 .image-swip{
   width: fit-content;
@@ -191,4 +192,12 @@
 }
 .btn_conf{
   background-color: rgba(238, 159, 14, 0.699);
+}
+.reservation{
+  background-color: rgba(255, 251, 0, 0.699);
+
+}
+.destinations{
+  background-color: rgba(255, 251, 0, 0.699);
+  margin-top: -8vh;
 }
