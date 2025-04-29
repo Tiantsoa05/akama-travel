@@ -1,0 +1,11 @@
+html{  
+    scroll-behavior: smooth;
+}
+body{
+    height: 100vh;
+    overflow-x: hidden;
+    margin-left: 20px;
+}
+p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

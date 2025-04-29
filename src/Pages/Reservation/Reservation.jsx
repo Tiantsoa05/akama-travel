@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Reservation = ()=>{
     const [destination, setDestination] = useState('');
@@ -7,6 +8,8 @@ const Reservation = ()=>{
     const [numChildren, setNumChildren] = useState(0);
     const [checkInDate, setCheckInDate] = useState('');
     const [checkOutDate, setCheckOutDate] = useState('');
+
+    const {t,i18n} = useTranslation()
 
     const handleSearch = () => {
         console.log('Rechercher des disponibilités pour :', {
@@ -20,53 +23,40 @@ const Reservation = ()=>{
     };
 
     return (
-      <div className="search-form " style={{marginTop: "30vh"}}>
+      <div className="search-form form">
+        <h3>{t('incitation')} </h3>
+        <p>{t('incitation_text')}</p>
           <label htmlFor="destination">Destination :</label>
           <input
             type="text"
-            id="destination"
+            id="destination form-control"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           />
-          <label htmlFor="numRooms">Nombre de chambres :</label>
-          <input
-            id="numRooms"
-            type="number"
-            className="number-champ"
-            value={numRooms}
-            onChange={(e) => setNumRooms(Number(e.target.value))}
-          />
-          <label htmlFor="numAdults">Adultes :</label>
+          <label htmlFor="numAdults">{t('nb_pers')} :</label>
           <input
             id="numAdults"
             type="number"
-            className="number-champ"
+            className="number-champ form-control"
             value={numAdults}
             onChange={(e) => setNumAdults(Number(e.target.value))}
           />
-          <label htmlFor="numChildren">Enfants :</label>
+          <label htmlFor="numChildren">{t('sejour')} :</label>
           <input
             id="numChildren"
             type="number"
-            className="number-champ"
+            className="number-champ form-control"
             value={numChildren}
             onChange={(e) => setNumChildren(Number(e.target.value))}
           />
-          <label htmlFor="checkInDate">Date d'arrivée :</label>
+          <label htmlFor="checkInDate">{t('date_depart')} :</label>
           <input
             type="date"
-            id="checkInDate"
+            id="checkInDate form-control"
             value={checkInDate}
             onChange={(e) => setCheckInDate(e.target.value)}
           />
-          <label htmlFor="checkOutDate">Date de départ :</label>
-          <input
-            type="date"
-            id="checkOutDate"
-            value={checkOutDate}
-            onChange={(e) => setCheckOutDate(e.target.value)}
-          />
-          <button onClick={handleSearch}>Vérifier les disponibilités</button>
+          <button onClick={handleSearch} className="btn btn_conf">{t('valider')}</button>
       </div>
     )
 }
