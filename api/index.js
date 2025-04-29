@@ -1,9 +1,11 @@
 import express from 'express'
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 dotenv.config()
 const app = express();
+app.use(cors())
 app.use(express.json());
 
 // Création du transporteur
@@ -17,15 +19,16 @@ const transporter = nodemailer.createTransport({
 
 // Route pour envoyer le mail
 app.post('/send-email', async (req, res) => {
-    const { destination, numAdults, numSejour, checkInDate, checkOutDate } = req.body;
-  
+    const { destination, numAdults, numSejour, checkInDate } = req.body;
+    console.log(req.body)
+
+    console.log(process.env.EMAIL_USER,process.env.EMAIL_PASS)
     const emailContent = `
       <h3>Nouvelle demande de réservation</h3>
       <p><strong>Destination:</strong> ${destination}</p>
       <p><strong>Nombre d'adultes:</strong> ${numAdults}</p>
       <p><strong>Nombre d'enfants:</strong> ${numSejour}</p>
       <p><strong>Date d'arrivée:</strong> ${checkInDate}</p>
-      <p><strong>Date de départ:</strong> ${checkOutDate}</p>
     `;
   
     try {
