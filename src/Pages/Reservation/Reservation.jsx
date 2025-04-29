@@ -1,64 +1,110 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import de Bootstrap pour des styles élégants
 
-const Reservation = ()=>{
-    const [destination, setDestination] = useState('');
-    const [numRooms, setNumRooms] = useState(1);
-    const [numAdults, setNumAdults] = useState(1);
-    const [numChildren, setNumChildren] = useState(0);
-    const [checkInDate, setCheckInDate] = useState('');
-    const [checkOutDate, setCheckOutDate] = useState('');
+const Reservation = () => {
+  const [destination, setDestination] = useState('');
+  const [numAdults, setNumAdults] = useState(1);
+  const [numSejour, setNumSejour] = useState(0);
+  const [checkInDate, setCheckInDate] = useState('');
 
-    const {t,i18n} = useTranslation()
+  const { t, i18n } = useTranslation();
 
-    const handleSearch = () => {
-        console.log('Rechercher des disponibilités pour :', {
-        destination,
-        numRooms,
-        numAdults,
-        numChildren,
-        checkInDate,
-        checkOutDate,
-        });
+  const handleSearch = async (e) => {
+
+    e.preventDefault();
+
+    const data = {
+      destination,
+      numAdults,
+      numSejour,
+      checkInDate
     };
 
-    return (
-      <div className="search-form form">
-        <h3>{t('incitation')} </h3>
-        <p>{t('incitation_text')}</p>
-          <label htmlFor="destination">Destination :</label>
-          <input
-            type="text"
-            id="destination form-control"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-          />
-          <label htmlFor="numAdults">{t('nb_pers')} :</label>
-          <input
-            id="numAdults"
-            type="number"
-            className="number-champ form-control"
-            value={numAdults}
-            onChange={(e) => setNumAdults(Number(e.target.value))}
-          />
-          <label htmlFor="numChildren">{t('sejour')} :</label>
-          <input
-            id="numChildren"
-            type="number"
-            className="number-champ form-control"
-            value={numChildren}
-            onChange={(e) => setNumChildren(Number(e.target.value))}
-          />
-          <label htmlFor="checkInDate">{t('date_depart')} :</label>
-          <input
-            type="date"
-            id="checkInDate form-control"
-            value={checkInDate}
-            onChange={(e) => setCheckInDate(e.target.value)}
-          />
-          <button onClick={handleSearch} className="btn btn_conf">{t('valider')}</button>
-      </div>
-    )
-}
+    if(destination.trim()!=='' || numAdults.trim()!=='' || numSejour.trim()!=='' || checkInDate.trim()!==''){
+      try {
+        const response = await axios.post('http://localhost:3000/send-email', data, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        console.log(response,data)
+        if (response.status === 200) {
+          alert(t('email_sent_success'));
+        } else {
+          alert(t('email_sent_error'));
+        }
+      } catch (error) {
+        console.log("error")
+      }
+    }else{
+      alert(t('form_error'))
+    }
+  };
 
-export default Reservation
+  return (
+    <div className="container py-5">
+      <div className="card shadow-lg p-4 rounded">
+        <h3 className="text-center mb-4 text-primary">{t('incitation')}</h3>
+        <p className="text-center mb-4">{t('incitation_text')}</p>
+        
+        <form onSubmit={handleSearch}>
+          <div className="form-group mb-3">
+            <label htmlFor="destination" className="form-label">{t('destination')} :</label>
+            <input
+              type="text"
+              id="destination"
+              className="form-control"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+            />
+          </div>
+
+          <div className="form-group mb-3">
+            <label htmlFor="numAdults" className="form-label">{t('nb_pers')} :</label>
+            <input
+              id="numAdults"
+              type="number"
+              className="form-control"
+              value={numAdults}
+              min={1}
+              onChange={(e) => setNumAdults(Number(e.target.value))}
+            />
+          </div>
+
+          <div className="form-group mb-3">
+            <label htmlFor="numSejour" className="form-label">{t('sejour')} :</label>
+            <input
+              id="numSejour"
+              type="number"
+              className="form-control"
+              value={numSejour}
+              min={0}
+              onChange={(e) => setNumSejour(Number(e.target.value))}
+            />
+          </div>
+
+          <div className="form-group mb-3">
+            <label htmlFor="checkInDate" className="form-label">{t('date_depart')} :</label>
+            <input
+              type="date"
+              id="checkInDate"
+              className="form-control"
+              value={checkInDate}
+              onChange={(e) => setCheckInDate(e.target.value)}
+            />
+          </div>
+
+          <div className="text-center">
+            <button type="submit" className="btn btn-primary btn-lg px-5 py-2">
+              {t('valider')}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Reservation;

@@ -13,7 +13,6 @@ const Destinations = ()=>{
             {
                 data.map((lieu,index)=>{
                     const desc = lieu.description.find(d=>d.translate === act)
-                    console.log(desc)
                     return <div className="card h-20 w-25 m-2">
                         <img src={`/images/${lieu.image}`} alt={lieu.city} className="img-destination"/>
                         <div className="card-body">

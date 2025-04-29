@@ -29,7 +29,10 @@ const resources = {
       titre_missions:"Our missions",
       incitation:"Don't wait :D",
       incitation_text:"Trust our service and pick the trip of your dreams.",
-      nb_pers:"Number of travelers"
+      nb_pers:"Number of travelers",
+      email_sent_success:"Reservation sent succesfully",
+      email_sent_error:"Reservation failed",
+      form_error:"Verify your informations, no input must not be empty"
     }
   },
   fr: {
@@ -59,7 +62,10 @@ const resources = {
       titre_missions:"Nos missions",
       incitation:"Qu'attendez-vous? :D",
       incitation_text:"Faites nous confiance et reservez le voyage de vos rêves.",
-      nb_pers:"Nombre de personnes"
+      nb_pers:"Nombre de personnes",
+      email_sent_success:"Reservation envoyée avec success",
+      email_sent_error:"Erreur lors de la reservation",
+      form_error:"Vérifiez vos vhamps , aucun champ ne doit être vide"
     }
   }
 };

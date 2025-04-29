@@ -18,7 +18,6 @@ function Home() {
           <Description/>
           <Destinations/>
           <Reservation/>
-          <Lieux/>
       </main>
     </div>
   );
